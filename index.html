@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Management System</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+
+    <!-- Sidebar -->
+    <div class="flex h-screen">
+        <div class="w-64 bg-blue-600 text-white">
+            <div class="p-4 text-xl font-semibold">
+                Hospital Management
+            </div>
+            <ul class="mt-6">
+                <li class="px-4 py-2 hover:bg-blue-700 cursor-pointer">Dashboard</li>
+                <li class="px-4 py-2 hover:bg-blue-700 cursor-pointer">Patient Registration</li>
+                <li class="px-4 py-2 hover:bg-blue-700 cursor-pointer">Appointment Booking</li>
+                <li class="px-4 py-2 hover:bg-blue-700 cursor-pointer">Staff List</li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1 p-6">
+            <!-- Dashboard -->
+            <div id="dashboard" class="hidden">
+                <h2 class="text-2xl font-bold mb-4">Dashboard</h2>
+                <p>Welcome to the Hospital Management System. Please navigate through the sidebar.</p>
+            </div>
+
+            <!-- Patient Registration Form -->
+            <div id="patient-form" class="hidden">
+                <h2 class="text-2xl font-bold mb-4">Patient Registration</h2>
+                <form class="space-y-4">
+                    <div>
+                        <label for="patient-name" class="block font-medium">Name</label>
+                        <input type="text" id="patient-name" class="w-full px-4 py-2 border rounded-lg" placeholder="Enter patient's name">
+                    </div>
+                    <div>
+                        <label for="patient-age" class="block font-medium">Age</label>
+                        <input type="number" id="patient-age" class="w-full px-4 py-2 border rounded-lg" placeholder="Enter patient's age">
+                    </div>
+                    <div>
+                        <label for="patient-gender" class="block font-medium">Gender</label>
+                        <select id="patient-gender" class="w-full px-4 py-2 border rounded-lg">
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="patient-contact" class="block font-medium">Contact</label>
+                        <input type="text" id="patient-contact" class="w-full px-4 py-2 border rounded-lg" placeholder="Enter patient's contact number">
+                    </div>
+                    <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-lg">Register Patient</button>
+                </form>
+            </div>
+
+            <!-- Appointment Booking Form -->
+            <div id="appointment-form" class="hidden">
+                <h2 class="text-2xl font-bold mb-4">Appointment Booking</h2>
+                <form class="space-y-4">
+                    <div>
+                        <label for="appointment-patient" class="block font-medium">Patient Name</label>
+                        <input type="text" id="appointment-patient" class="w-full px-4 py-2 border rounded-lg" placeholder="Enter patient's name">
+                    </div>
+                    <div>
+                        <label for="appointment-date" class="block font-medium">Appointment Date</label>
+                        <input type="date" id="appointment-date" class="w-full px-4 py-2 border rounded-lg">
+                    </div>
+                    <div>
+                        <label for="appointment-time" class="block font-medium">Time</label>
+                        <input type="time" id="appointment-time" class="w-full px-4 py-2 border rounded-lg">
+                    </div>
+                    <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-lg">Book Appointment</button>
+                </form>
+            </div>
+
+            <!-- Staff List -->
+            <div
+
