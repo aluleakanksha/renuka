@@ -1,157 +1,155 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
+    <title>Library Management System</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hospital Management System</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 
-    <style>
-        /* Logo Fade-in Animation */
-        @keyframes logoFadeIn {
-            0% {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Smooth Card Hover */
-        .card:hover {
-            transform: scale(1.03);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        /* Smooth Button Hover */
-        .btn:hover {
-            background-color: #0066cc;
-            transition: background-color 0.3s ease;
-        }
-
-        /* Sidebar Hover Effects */
-        .sidebar-item:hover {
-            background-color: #2b4d82;
-            transform: scale(1.02);
-            transition: background-color 0.3s ease, transform 0.3s ease;
-        }
-
-    </style>
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="bg-gray-50 font-sans">
+<body class="bg-gray-100">
 
-    <div class="flex h-screen">
+<div class="flex min-h-screen">
 
-        <!-- Sidebar -->
-        <div class="w-72 bg-gradient-to-r from-blue-700 to-blue-800 text-white p-8">
-            <!-- Hospital Logo and Name -->
-            <div class="flex justify-center flex-col items-center mb-12 animate__animated animate__fadeIn animate__delay-1s">
-                <!-- Logo (can replace with your own logo) -->
-                <img src="https://via.placeholder.com/150?text=Logo" alt="Hospital Logo" class="w-24 h-24 mb-4 animate__animated animate__fadeIn animate__delay-1s">
-                <h2 class="text-3xl font-bold text-center">Hospital Management</h2>
+    <!-- Sidebar -->
+    <aside class="w-64 bg-indigo-700 text-white p-6">
+        <div class="text-center mb-10">
+            <div class="w-16 h-16 mx-auto bg-white text-indigo-700 rounded-full flex items-center justify-center text-2xl font-bold mb-3">
+                📚
             </div>
-
-            <!-- Sidebar Navigation -->
-            <ul class="space-y-4">
-                <li class="sidebar-item px-6 py-3 rounded-lg cursor-pointer">Dashboard</li>
-                <li class="sidebar-item px-6 py-3 rounded-lg cursor-pointer">Patient Registration</li>
-                <li class="sidebar-item px-6 py-3 rounded-lg cursor-pointer">Appointment Booking</li>
-                <li class="sidebar-item px-6 py-3 rounded-lg cursor-pointer">Staff List</li>
-            </ul>
+            <h1 class="text-xl font-bold">Library System</h1>
         </div>
 
-        <!-- Main Content -->
-        <div class="flex-1 p-12">
-            <!-- Dashboard Section -->
-            <div id="dashboard" class="hidden">
-                <h2 class="text-3xl font-semibold text-gray-800 mb-6 animate__animated animate__fadeIn animate__delay-1s">Dashboard</h2>
-                <div class="grid grid-cols-2 gap-8">
-                    <!-- Card 1 -->
-                    <div class="card bg-white p-6 rounded-lg shadow-md">
-                        <h3 class="text-lg font-semibold text-gray-700">Total Patients</h3>
-                        <p class="text-3xl font-bold text-blue-700">1523</p>
-                    </div>
-                    <!-- Card 2 -->
-                    <div class="card bg-white p-6 rounded-lg shadow-md">
-                        <h3 class="text-lg font-semibold text-gray-700">Appointments Today</h3>
-                        <p class="text-3xl font-bold text-blue-700">42</p>
-                    </div>
+        <ul class="space-y-4">
+            <li onclick="showSection('dashboard')" class="cursor-pointer px-4 py-2 rounded hover:bg-indigo-600">Dashboard</li>
+            <li onclick="showSection('addBook')" class="cursor-pointer px-4 py-2 rounded hover:bg-indigo-600">Add Book</li>
+            <li onclick="showSection('issueBook')" class="cursor-pointer px-4 py-2 rounded hover:bg-indigo-600">Issue Book</li>
+            <li onclick="showSection('bookList')" class="cursor-pointer px-4 py-2 rounded hover:bg-indigo-600">Book List</li>
+        </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 p-10">
+
+        <!-- Dashboard -->
+        <section id="dashboard">
+            <h2 class="text-3xl font-bold mb-6 text-gray-800">Dashboard</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition">
+                    <h3 class="text-gray-600">Total Books</h3>
+                    <p class="text-3xl font-bold text-indigo-700">1200</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition">
+                    <h3 class="text-gray-600">Issued Books</h3>
+                    <p class="text-3xl font-bold text-indigo-700">320</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition">
+                    <h3 class="text-gray-600">Members</h3>
+                    <p class="text-3xl font-bold text-indigo-700">150</p>
                 </div>
             </div>
+        </section>
 
-            <!-- Patient Registration Form -->
-            <div id="patient-form" class="hidden">
-                <h2 class="text-3xl font-semibold text-gray-800 mb-6 animate__animated animate__fadeIn animate__delay-1s">Patient Registration</h2>
-                <form class="space-y-6 bg-white p-8 rounded-lg shadow-md">
-                    <div>
-                        <label for="patient-name" class="block text-gray-700">Name</label>
-                        <input type="text" id="patient-name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter patient's name">
-                    </div>
-                    <div>
-                        <label for="patient-age" class="block text-gray-700">Age</label>
-                        <input type="number" id="patient-age" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter patient's age">
-                    </div>
-                    <div>
-                        <label for="patient-gender" class="block text-gray-700">Gender</label>
-                        <select id="patient-gender" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                            <option value="male">Male</option>
-                            <option value="female">Female</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label for="patient-contact" class="block text-gray-700">Contact</label>
-                        <input type="text" id="patient-contact" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter patient's contact number">
-                    </div>
-                    <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg shadow-md btn">Register Patient</button>
-                </form>
+        <!-- Add Book -->
+        <section id="addBook" class="hidden">
+            <h2 class="text-3xl font-bold mb-6 text-gray-800">Add Book</h2>
+
+            <form class="bg-white p-8 rounded-lg shadow max-w-xl">
+                <div class="mb-4">
+                    <label class="block text-gray-700 mb-1">Book Name</label>
+                    <input type="text" class="w-full border rounded px-4 py-2 focus:ring-2 focus:ring-indigo-500">
+                </div>
+
+                <div class="mb-4">
+                    <label class="block text-gray-700 mb-1">Author</label>
+                    <input type="text" class="w-full border rounded px-4 py-2 focus:ring-2 focus:ring-indigo-500">
+                </div>
+
+                <div class="mb-4">
+                    <label class="block text-gray-700 mb-1">Category</label>
+                    <input type="text" class="w-full border rounded px-4 py-2 focus:ring-2 focus:ring-indigo-500">
+                </div>
+
+                <button class="w-full bg-indigo-600 text-white py-2 rounded hover:bg-indigo-700 transition">
+                    Add Book
+                </button>
+            </form>
+        </section>
+
+        <!-- Issue Book -->
+        <section id="issueBook" class="hidden">
+            <h2 class="text-3xl font-bold mb-6 text-gray-800">Issue Book</h2>
+
+            <form class="bg-white p-8 rounded-lg shadow max-w-xl">
+                <div class="mb-4">
+                    <label class="block text-gray-700 mb-1">Student Name</label>
+                    <input type="text" class="w-full border rounded px-4 py-2 focus:ring-2 focus:ring-indigo-500">
+                </div>
+
+                <div class="mb-4">
+                    <label class="block text-gray-700 mb-1">Book Name</label>
+                    <input type="text" class="w-full border rounded px-4 py-2 focus:ring-2 focus:ring-indigo-500">
+                </div>
+
+                <div class="mb-4">
+                    <label class="block text-gray-700 mb-1">Issue Date</label>
+                    <input type="date" class="w-full border rounded px-4 py-2 focus:ring-2 focus:ring-indigo-500">
+                </div>
+
+                <button class="w-full bg-indigo-600 text-white py-2 rounded hover:bg-indigo-700 transition">
+                    Issue Book
+                </button>
+            </form>
+        </section>
+
+        <!-- Book List -->
+        <section id="bookList" class="hidden">
+            <h2 class="text-3xl font-bold mb-6 text-gray-800">Book List</h2>
+
+            <div class="bg-white rounded-lg shadow overflow-x-auto">
+                <table class="w-full text-left">
+                    <thead class="bg-indigo-600 text-white">
+                        <tr>
+                            <th class="px-4 py-3">ID</th>
+                            <th class="px-4 py-3">Book Name</th>
+                            <th class="px-4 py-3">Author</th>
+                            <th class="px-4 py-3">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b hover:bg-gray-100">
+                            <td class="px-4 py-3">1</td>
+                            <td class="px-4 py-3">Clean Code</td>
+                            <td class="px-4 py-3">Robert C. Martin</td>
+                            <td class="px-4 py-3 text-green-600 font-semibold">Available</td>
+                        </tr>
+                        <tr class="border-b hover:bg-gray-100">
+                            <td class="px-4 py-3">2</td>
+                            <td class="px-4 py-3">Java Basics</td>
+                            <td class="px-4 py-3">James Gosling</td>
+                            <td class="px-4 py-3 text-red-600 font-semibold">Issued</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
+        </section>
 
-            <!-- Appointment Booking Form -->
-            <div id="appointment-form" class="hidden">
-                <h2 class="text-3xl font-semibold text-gray-800 mb-6 animate__animated animate__fadeIn animate__delay-1s">Appointment Booking</h2>
-                <form class="space-y-6 bg-white p-8 rounded-lg shadow-md">
-                    <div>
-                        <label for="appointment-patient" class="block text-gray-700">Patient Name</label>
-                        <input type="text" id="appointment-patient" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter patient's name">
-                    </div>
-                    <div>
-                        <label for="appointment-date" class="block text-gray-700">Appointment Date</label>
-                        <input type="date" id="appointment-date" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    </div>
-                    <div>
-                        <label for="appointment-time" class="block text-gray-700">Time</label>
-                        <input type="time" id="appointment-time" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    </div>
-                    <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg shadow-md btn">Book Appointment</button>
-                </form>
-            </div>
+    </main>
+</div>
 
-            <!-- Staff List -->
-            <div id="staff-list" class="hidden">
-                <h2 class="text-3xl font-semibold text-gray-800 mb-6 animate__animated animate__fadeIn animate__delay-1s">Staff List</h2>
-                <div class="overflow-x-auto bg-white rounded-lg shadow-md">
-                    <table class="w-full table-auto">
-                        <thead class="bg-blue-700 text-white">
-                            <tr>
-                                <th class="px-4 py-2">ID</th>
-                                <th class="px-4 py-2">Name</th>
-                                <th class="px-4 py-2">Role</th>
-                                <th class="px-4 py-2">Contact</th>
-                            </tr>
-                        </thead>
-                        <tbody class="text-gray-700">
-                            <tr class="hover:bg-gray-100 transition-all duration-200">
-                                <td class="px-4 py-2">1</td>
-                                <td class="px-4 py-2">Dr. Smith</td>
-                                <td class="px-4 py-2">Doctor</td>
-                                <td class="px-4 py-2">+123456789</td>
-                            </tr>
-                            <tr class="hover:bg-gray-100 transition-all duration-200">
-                                <td class="px-4 py-2">2</td>
+<!-- JS -->
+<script>
+    function showSection(id) {
+        document.querySelectorAll("section").forEach(sec => sec.classList.add("hidden"));
+        document.getElementById(id).classList.remove("hidden");
+    }
+</script>
+
+</body>
+</html>
 
